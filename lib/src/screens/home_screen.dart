@@ -6,6 +6,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../widgets/widgets.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({ Key? key }) : super(key: key);
 
@@ -13,12 +15,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: const Text('Home'),
       ),
 
-      body: Center(
-        child: Text('HomeScreen'),
-      ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: ( _, index ){
+          return const TaskTile();
+        }
+      )
     );
   }
 }
+
