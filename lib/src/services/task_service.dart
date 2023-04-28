@@ -113,7 +113,7 @@ class TaskService extends ChangeNotifier{
       final taskResponse = await http.post(
         Uri.parse(_baseUrl),
         headers: headers,
-        body: task.toRawJson(),
+        body: task.toJson(_token),
         encoding: Encoding.getByName('utf-8'),
       );
       
@@ -138,7 +138,7 @@ class TaskService extends ChangeNotifier{
         'Authorization': 'Bearer e864a0c9eda63181d7d65bc73e61e3dc6b74ef9b82f7049f1fc7d9fc8f29706025bd271d1ee1822b15d654a84e1a0997b973a46f923cc9977b3fcbb064179ecd'
       };
       var request = http.Request('POST', Uri.parse(_baseUrl));
-      request.bodyFields = task.toJson();
+      request.bodyFields = task.toJson( _token );
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
@@ -164,11 +164,11 @@ class TaskService extends ChangeNotifier{
       };
       
       final taskResponse = await http.delete(
-        Uri.parse('$_baseUrl/${ task.id }'),
+        Uri.parse('$_baseUrl/${ task.id }?token=$_token'),
         headers: headers
       );
       
-      if( taskResponse.statusCode == 200 ){
+      if( taskResponse.statusCode == 201 ){
         getTasks();
       }
 
@@ -180,10 +180,3 @@ class TaskService extends ChangeNotifier{
   }
 
 }
-
-
-
-/*
-
-
- */

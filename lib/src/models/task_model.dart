@@ -33,11 +33,11 @@ class TaskModel {
 
     factory TaskModel.fromRawJson(String str) => TaskModel.fromJson(json.decode(str));
 
-    String toRawJson() => json.encode(toJson());
+    String toRawJson( String token ) => json.encode(toJson( token ));
 
     factory TaskModel.fromJson(Map<String, dynamic> json) {
 
-      
+
 
       return TaskModel(
         id: json["id"],
@@ -51,12 +51,13 @@ class TaskModel {
       );
     }
 
-    Map<String, String> toJson() => {
+    Map<String, String> toJson( String token ) => {
         "title": title ?? '',
         "is_completed": '$isCompleted',
         "due_date": dueDate ?? '',
         "comments": comments ?? '',
         "description": description ?? '',
-        "tags": tags ?? ''
+        "tags": tags ?? '',
+        "token": token
     };
 }

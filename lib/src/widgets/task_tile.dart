@@ -5,6 +5,8 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:gestion_tareas_app/src/services/task_service.dart';
+import 'package:provider/provider.dart';
 import '../models/task_model.dart';
 
 class TaskTile extends StatelessWidget {
@@ -52,10 +54,32 @@ class TaskTile extends StatelessWidget {
               
                 IconButton(
                   padding: EdgeInsets.zero,
-                  icon: const Icon( Icons.more_vert ) ,
+                  icon: const Icon( Icons.delete ) ,
                   onPressed: (){
-  
-    
+
+                    showDialog(
+                      context: context, builder: (_){
+                        return AlertDialog(
+                          title: const Text('¿Desea eliminar esta tarea?'),
+                          content: Text( '${ taskModel.title }' ),
+                          actions: [
+                            
+                            TextButton(
+                              onPressed: () async {
+                                final navigator = Navigator.of(context);
+                                final taskService = Provider.of<TaskService>(context, listen: false);
+                                await taskService.deleteTask(task: taskModel);
+                                navigator.pop();
+                              }, 
+                              child: const Text('SI')
+                            ),
+
+                            TextButton(onPressed: () => Navigator.pop(context), child: const Text('NO'))
+                          ],
+                        );
+                      }
+                    );
+
                   }, 
                 )
               ],
