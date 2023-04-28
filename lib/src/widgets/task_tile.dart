@@ -24,7 +24,7 @@ class TaskTile extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular( 10 )
         ),
-        color: Colors.white,
+        color: Colors.black12,
         padding: const EdgeInsets.symmetric( vertical: 10, horizontal: 10 ),
         minWidth: double.maxFinite,
         onPressed: onPressed,
