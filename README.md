@@ -1,16 +1,17 @@
 # gestion_tareas_app
 
-A new Flutter project.
+Ejercicio practico de aplicacion de gestion de tareas.
 
-## Getting Started
+## Requisitos
 
-This project is a starting point for a Flutter application.
+- Tener el SDK de Flutter sobre el equipo
+- Un dispositivo fisico o virtual para ejecutar el proyecto.
 
-A few resources to get you started if this is your first Flutter project:
+## Comenzar
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Ejecutar el siguiente comando desde la raiz del proyecto
+- flutter pub get
+- Lanzar la aplicacion
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Si se ejecuta en un dispositivo fisico IOS debe contar con una cuenta de desarrollo y asignar un nombre de paquete valido. 
+
