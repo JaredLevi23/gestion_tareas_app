@@ -5,81 +5,94 @@
  */
 
 import 'package:flutter/material.dart';
+import '../models/task_model.dart';
 
 class TaskTile extends StatelessWidget {
-const TaskTile({ Key? key }) : super(key: key);
+
+  final TaskModel taskModel;
+  final Function()? onPressed;
+  const TaskTile({ Key? key, required this.taskModel, this.onPressed }) : super(key: key);
 
   @override
   Widget build(BuildContext context){
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.all( 5 ),
+    return Container(
+      margin: const EdgeInsets.only( top: 8 ),
+      child: MaterialButton(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular( 10 )
+        ),
+        color: Colors.white,
+        padding: const EdgeInsets.symmetric( vertical: 10, horizontal: 10 ),
+        minWidth: double.maxFinite,
+        onPressed: onPressed,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-    
+        
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
+      
                 Container(
                   padding: const EdgeInsets.all( 5 ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular( 15 ),
-                    color: Colors.redAccent
+                    color: taskModel.isCompleted == 1 
+                    ? Colors.green
+                    : Colors.redAccent
                   ),
-                  child: const Text('Pendiente', style: TextStyle( color: Colors.white ),),
+                  child: Text(
+                    taskModel.isCompleted == 1 
+                    ? 'Completada'
+                    : 'Pendiente', 
+                    style: const TextStyle( color: Colors.white ),
+                  ),
                 ),
               
                 IconButton(
                   padding: EdgeInsets.zero,
                   icon: const Icon( Icons.more_vert ) ,
-                  onPressed: (){}, 
+                  onPressed: (){
+  
+    
+                  }, 
                 )
               ],
             ),
-    
+        
             Container(
               margin: const EdgeInsets.symmetric( horizontal: 5, vertical: 5 ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text('Titulo ABCD', style: TextStyle( fontSize: 22, fontWeight: FontWeight.w700 ),),
-            
-                  SizedBox(
-                    height: 8,
-                  ),
-                
-                  Text(
-                    'Do pariatur sunt duis eu id tempor pariatur dolor. Velit ad enim non in aliqua eiusmod occaecat voluptate. Dolor qui non et cillum nulla cillum quis ad. Amet sunt irure eu eu irure minim consequat esse esse eu. Incididunt eu tempor irure cillum anim ex. Anim culpa cupidatat consectetur ad incididunt mollit do ex amet est veniam qui.',
-                    maxLines: 2,
-                    style: TextStyle( fontSize: 17, fontWeight: FontWeight.w400 ),
+                children: [
+      
+                  Text( 
+                    taskModel.title ?? 'Sin titulo' , 
+                    style: const TextStyle( fontSize: 22, fontWeight: FontWeight.w700 ),
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
+                  ),
+            
+                  const SizedBox(
+                    height: 8,
                   ),
                 ],
               ),
             ),
-
+      
             const Divider(),
             
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  children: const [
-                    Icon( Icons.comment ),
-                    SizedBox( width: 5, ),
-                    Text('0', style: TextStyle( fontSize: 18 ),)
-                  ],
-                ),
-
-                const Text('2023/04/26', style: TextStyle( fontSize: 19, fontWeight: FontWeight.w400 ),),
+                Text(taskModel.dueDate ?? 'Sin fecha', style: const TextStyle( fontSize: 20, fontWeight: FontWeight.w400 ),),
               ],
             ),
-    
-    
+        
+        
           ],
-        ),
+        )
       ),
     );
   }

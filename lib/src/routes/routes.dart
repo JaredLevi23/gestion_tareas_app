@@ -11,6 +11,7 @@ class AppRoutes{
 
   static Map<String, Widget Function(BuildContext)> routes = {
     'home': (_) => const HomeScreen(),
+    'create': (_) => const CreateTaskScreen(),
   };
 
 }
